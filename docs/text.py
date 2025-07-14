@@ -29,7 +29,7 @@ def isValidFile(url, allowedTypes=None, maxSize = 100):
     
 
 def main():
-    TEXT_PATH = r"C:\Users\jackr\OneDrive\Desktop\C_Files\python\downloadQueue.txt"
+    TEXT_PATH = r"downloadQueue.txt" #ENTER TEXT PATH HERE
     MAX_SIZE = 100
     ALLOWED_TYPES = [
         "video/",                # mp4, webm, mkv, etc.
