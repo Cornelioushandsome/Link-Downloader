@@ -63,5 +63,5 @@ def main():
         downloadFile(args.url, args.out)
     '''
 if __name__ =="__main__":
-    os.chdir(r"C:\Users\jackr\OneDrive\Desktop")
+    os.chdir(r"C:\Users\jackr\OneDrive\Desktop") #ENTER DIRECTORY PATH HERE
     main()
