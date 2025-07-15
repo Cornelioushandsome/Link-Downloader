@@ -1,16 +1,16 @@
 import requests
 import argparse
 from pathlib import Path
-import shutil
+#import shutil
 import os
 import yt_dlp
-from text import isValidFile
+#from text import isValidFile
 from validSites import VALID_YT_DLP_SITES
 
 #GLOBAL VARS
-URL_FILE = r"C:\Users\jackr\OneDrive\Desktop\C_Files\python\downloadQueue.txt"
-DEAFAULT_OUTPUT_FOLDER = r"C:\Users\jackr\OneDrive\Desktop\web-downloads"
-os.chdir(r"C:\Users\jackr\OneDrive\Desktop")
+URL_FILE = r"downloadQueue.txt" #ENTER THE FILE TO STORE THE URLS HERE
+DEFAULT_OUTPUT_FOLDER = r"web-downloads" #ENTER THE OUTPUT FOLDER OF THE DOWNLOADS
+#os.chdir(r"") OPTIONAL: MOVE DIRECTORY TO DESKTOP
 PATH = os.getcwd()
 
 def getFileType(url):
@@ -102,7 +102,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("url", nargs="?", help="Enter a URL to download from")
     parser.add_argument("-b", "--batch", action="store_true", help=f"Download all URLs from {URL_FILE}")
-    parser.add_argument("--out", default = DEAFAULT_OUTPUT_FOLDER, help="File to store all downloads")
+    parser.add_argument("--out", default = DEFAULT_OUTPUT_FOLDER, help="File to store all downloads")
     parser.add_argument("-c", "--clear", action="store_true", help="Choose whether to delete queue after downloading")
     args = parser.parse_args()
     
