@@ -1,7 +1,12 @@
 import argparse
 import requests
 
+TEXT_PATH = r"C:\Users\jackr\OneDrive\Desktop\C_Files\python\downloadQueue.txt"
+MAX_SIZE = 100
+
+
 def isValidFile(url, allowedTypes=None, maxSize = 100):
+    #Change this so that it prompts user to confirm
     try:
         response = requests.head(url, allow_redirects=True, timeout=10)
 
@@ -19,8 +24,11 @@ def isValidFile(url, allowedTypes=None, maxSize = 100):
         if content_length:
             size_mb = int(content_length) / (1024 * 1024)
             if size_mb > maxSize:
-                print(f"File size {size_mb:.2f} MB exceeds max allowed {maxSize} MB.")
-                return False
+                prompt = input(f"Size of file is {size_mb} mb. Would you still like to download? [y/n]: ").lower()
+                if prompt == "y":
+                    return True
+                else:
+                    return False
 
         return True
     except Exception as e:
@@ -29,8 +37,7 @@ def isValidFile(url, allowedTypes=None, maxSize = 100):
     
 
 def main():
-    TEXT_PATH = r"downloadQueue.txt" #ENTER TEXT PATH HERE
-    MAX_SIZE = 100
+    
     ALLOWED_TYPES = [
         "video/",                # mp4, webm, mkv, etc.
         "audio/",                # mp3, wav, etc.
@@ -54,10 +61,10 @@ def main():
 
     if args.add:
         try:
-            with open(TEXT_PATH, "a") as file:
+            with open(TEXT_PATH, "a") as f:
                 for i in args.add:
                     if isValidFile(url=i, allowedTypes=ALLOWED_TYPES, maxSize=MAX_SIZE):
-                        file.write(i + "\n")
+                        f.write(i + "\n")
                         print(f"Successfully added file: {i.split("/")[-1]}")
                     else:
                         print("Invalid file. Moving on\n")
@@ -67,14 +74,14 @@ def main():
             return
     if args.remove:
         try:
-            with open(TEXT_PATH, "r") as file:
-                lines = [line.strip() for line in file.readlines()]
+            with open(TEXT_PATH, "r") as f:
+                lines = [line.strip() for line in f.readlines()]
 
             updatedLines = [line.strip() for line in lines if line not in args.remove]
 
-            with open(TEXT_PATH, "w") as file:
+            with open(TEXT_PATH, "w") as f:
                 for line in updatedLines:
-                    file.write(line + "\n")
+                    f.write(line + "\n")
             print(f"Removed valid lines in {args.remove}")
         except FileNotFoundError:
             print("File not found")
