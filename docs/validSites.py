@@ -13,10 +13,7 @@ VALID_YT_DLP_SITES = [
     "instagram.com",
     "bandcamp.com",
     "twitter.com",
-    "reddit.com",       # for Reddit videos and gifs
-    "peer5.com",        # streaming platform
-    "spotify.com",      # note: Spotify streaming may require special handling
-    "redgifs.com",
-    "redtube.com",
-    "pornhub.com"
+    "reddit.com",      
+    "peer5.com",        
+    "spotify.com",      
 ]
