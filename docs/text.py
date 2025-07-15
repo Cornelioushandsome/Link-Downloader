@@ -1,7 +1,7 @@
 import argparse
 import requests
 
-TEXT_PATH = r"C:\Users\jackr\OneDrive\Desktop\C_Files\python\downloadQueue.txt"
+TEXT_PATH = r"downloadQueue.txt" #ENTER THE FILE WHERE YOU WILL STORE THE DOWNLOAD LINKS HERE
 MAX_SIZE = 100
 
 
